@@ -63,8 +63,8 @@ app.post('/register', async(req, res) => {
    try{
         const userCreated = await prisma.user.create({
            data:{
-               name,
-               email,
+               name: name,
+               email: email,
                password: hash
            }
        });
