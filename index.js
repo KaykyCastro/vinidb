@@ -25,7 +25,6 @@ async function verifyToken(req, res, next) {
 }
 
 app.get('/', async (req, res) => {
-
   res.send('Welcome');
 })
 
@@ -81,7 +80,7 @@ app.post('/register', async (req, res) => {
       }
     });
 
-    res.cookie('auth', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7, sameSite: "lax" });
+    res.cookie('auth', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7, sameSite: "none", secure: true });
     res.json(userCreated);
 
   } catch (err) {
@@ -142,7 +141,7 @@ app.post('/login', verifyToken, async (req, res) => {
       }
     });
 
-    res.cookie('auth', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7, sameSite: "lax" });
+    res.cookie('auth', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7, sameSite: "none", secure: true });
     res.json(user);
 
   } catch (err) {
